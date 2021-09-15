@@ -1,0 +1,26 @@
+projects:
+- name: Ben-LKFT-libhugetlbfs
+  projects: &projects_all
+    - ~ben.copeland/linux-stable-rc-linux-5.10.y
+    - ~ben.copeland/linux-stable-rc-linux-5.4.y
+  url: https://staging-qa-reports.linaro.org
+  environments: &environments_all
+  - fx700
+  known_issues:
+  - environments: *environments_all
+    notes: >
+      LKFT: libhugetlbfs: heapshrink-2M-64 failed and
+      fix patch is in latest release of libhugetlbfs repo
+    projects: *projects_all
+    test_name: libhugetlbfs/LD_PRELOAD_libhugetlbfs.so-libheapshrink.so-HUGETLB_MORECORE_SHRINK_yes-HUGETLB_MORECORE_yes-heapshrink-2M-64 
+    url: https://bugs.linaro.org/show_bug.cgi?id=3950
+    active: true
+    intermittent: false
+  - environments: *environments_all
+    notes: >
+      LKFT: libhugetlbfs: heapshrink-2M-64 and heapshrink-2M-32 on arm32 failed.
+    projects: *projects_all
+    test_name: libhugetlbfs/LD_PRELOAD_libhugetlbfs.so-libheapshrink.so-HUGETLB_MORECORE_SHRINK_yes-HUGETLB_MORECORE_yes-heapshrink-2M-32
+    url: https://bugs.linaro.org/show_bug.cgi?id=3950
+    active: true
+    intermittent: false

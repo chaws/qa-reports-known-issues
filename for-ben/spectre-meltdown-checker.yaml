@@ -1,0 +1,21 @@
+projects:
+- name: Ben-LKFT-spectre-meltdown-checker
+  projects: &projects_all
+    - ~ben.copeland/linux-stable-rc-linux-5.10.y
+    - ~ben.copeland/linux-stable-rc-linux-5.4.y
+  url: https://staging-qa-reports.linaro.org
+  environments: &environments_all
+  - fx700
+  known_issues:
+  - environments: *environments_all
+    notes: >
+      CVE-2018-3639: VULN Your CPU doesn't support SSBD
+      CVE-2018-3640: VULN an up-to-date CPU microcode is needed to mitigate
+      this vulnerability
+    projects: *projects_all
+    test_names:
+    - spectre-meltdown-checker-test/CVE-2018-3639
+    - spectre-meltdown-checker-test/CVE-2018-3640
+    url: null
+    active: true
+    intermittent: true

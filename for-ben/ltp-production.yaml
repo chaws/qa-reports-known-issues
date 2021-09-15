@@ -1,0 +1,683 @@
+projects:
+- name: Ben-LKFT-ltp
+  projects: &projects_all
+    - ~ben.copeland/linux-stable-rc-linux-5.10.y
+    - ~ben.copeland/linux-stable-rc-linux-5.4.y
+  url: https://staging-qa-reports.linaro.org
+  environments: &environments_all
+  - fx700
+  known_issues:
+  - environments: *environments_all
+    notes: >
+      mainline kernel tests baselining
+    projects: *projects_all
+    test_names:
+    - ltp-syscalls-tests/quotactl01
+    - ltp-syscalls-compat-tests/quotactl01
+    - ltp-syscalls-64k-page_size-tests/quotactl01
+    - ltp-syscalls-kasan-tests/quotactl01
+    url: https://projects.linaro.org/projects/CTT/queues/issue/CTT-585
+    active: true
+    intermittent: false
+  - environments: *environments_all
+    notes: >
+      sysfs01 sysfs02 sysfs03 sysfs04 sysfs05 and sysfs06 no more valid.
+      sysfs system call is obsolete; don't use it.
+      This test can only run on kernels that support the sysfs system call
+    projects: *projects_all
+    test_name: ltp-syscalls-tests/sysfs01
+    url: https://bugs.linaro.org/show_bug.cgi?id=3722
+    active: true
+    intermittent: false
+  - environments: *environments_all
+    notes: >
+      sysfs01 sysfs02 sysfs03 sysfs04 sysfs05 and sysfs06 no more valid.
+      sysfs system call is obsolete; don't use it.
+      This test can only run on kernels that support the sysfs system call
+    projects: *projects_all
+    test_name: ltp-syscalls-tests/sysfs02
+    url: https://bugs.linaro.org/show_bug.cgi?id=3722
+    active: true
+    intermittent: false
+  - environments: *environments_all
+    notes: >
+      sysfs01 sysfs02 sysfs03 sysfs04 sysfs05 and sysfs06 no more valid.
+      sysfs system call is obsolete; don't use it.
+      This test can only run on kernels that support the sysfs system call
+    projects: *projects_all
+    test_name: ltp-syscalls-tests/sysfs03
+    url: https://bugs.linaro.org/show_bug.cgi?id=3722
+    active: true
+    intermittent: false
+  - environments: *environments_all
+    notes: >
+      sysfs01 sysfs02 sysfs03 sysfs04 sysfs05 and sysfs06 no more valid.
+      sysfs system call is obsolete; don't use it.
+      This test can only run on kernels that support the sysfs system call
+    projects: *projects_all
+    test_name: ltp-syscalls-tests/sysfs04
+    url: https://bugs.linaro.org/show_bug.cgi?id=3722
+    active: true
+    intermittent: false
+  - environments: *environments_all
+    notes: >
+      sysfs01 sysfs02 sysfs03 sysfs04 sysfs05 and sysfs06 no more valid.
+      sysfs system call is obsolete; don't use it.
+      This test can only run on kernels that support the sysfs system call
+    projects: *projects_all
+    test_name: ltp-syscalls-tests/sysfs05
+    url: https://bugs.linaro.org/show_bug.cgi?id=3722
+    active: true
+    intermittent: false
+  - environments: *environments_all
+    notes: >
+      sysfs01 sysfs02 sysfs03 sysfs04 sysfs05 and sysfs06 no more valid.
+      sysfs system call is obsolete; don't use it.
+      This test can only run on kernels that support the sysfs system call
+    projects: *projects_all
+    test_name: ltp-syscalls-tests/sysfs06
+    url: https://bugs.linaro.org/show_bug.cgi?id=3722
+    active: true
+    intermittent: false
+  - environments: *environments_all
+    notes: >
+      ustat01 and ustat02 failed only on Juno, because this syscall not
+      implemented on arm-64 architecture.
+      ustat(2) failed and setthe errno to 38 : Function not implemented
+    projects: *projects_all
+    test_name: ltp-syscalls-tests/ustat01
+    url: https://bugs.linaro.org/show_bug.cgi?id=3721
+    active: true
+    intermittent: false
+  - environments: *environments_all
+    notes: >
+      ustat01 and ustat02 failed only on Juno, because this syscall not
+      implemented on arm-64 architecture.
+      ustat(2) failed and setthe errno to 38 : Function not implemented
+    projects: *projects_all
+    test_name: ltp-syscalls-tests/ustat02
+    url: https://bugs.linaro.org/show_bug.cgi?id=3721
+    active: true
+    intermittent: false
+  - environments: *environments_all
+    notes: >
+      fs:isofs Do not try to build iso's on embedded boards
+    projects: *projects_all
+    test_name: ltp-fs-tests/isofs
+    url: https://bugs.linaro.org/show_bug.cgi?id=3318
+    active: true
+    intermittent: false
+  - test_names:
+    - ltp-fs-tests/quota_remount_test01
+    notes: >
+      LKFT: arm64: Hikey: Juno: db410c:
+      ltp-fs-tests/quota_remount_test01
+      quotaon: Quota format not supported in kernel
+    matrix_apply:
+    - environments: *environments_all
+      projects: *projects_all
+    url: https://bugs.linaro.org/show_bug.cgi?id=3354
+    active: true
+    intermittent: true
+  - environments: *environments_all
+    notes: >
+      LKFT: linux-mainline: HiKey and Juno: ltp-containers Network Namespaces
+      tests failed
+    projects: *projects_all
+    test_name: ltp-containers-tests/netns_sysfs
+    url: https://bugs.linaro.org/show_bug.cgi?id=3327
+    active: true
+    intermittent: false
+  - environments: *environments_all
+    notes: >
+      LTP CVE cve-2014-0196 newly running test case have different results on
+      different boards.
+    projects: *projects_all
+    test_name: ltp-cve-tests/cve-2014-0196
+    url: https://bugs.linaro.org/show_bug.cgi?id=3858
+    active: true
+    intermittent: false
+  - environments: *environments_all
+    notes: >
+      qemu_arm32/64: LTP select04 is not returning 0 on timeout
+    projects: *projects_all
+    test_name: ltp-syscalls-tests/select04
+    url: https://bugs.linaro.org/show_bug.cgi?id=3852
+    active: true
+    intermittent: true
+  - environments: *environments_all
+    notes: >
+      LKFT: LTP: cve-2015-3290 should be skipped in all
+    projects: *projects_all
+    test_name: ltp-cve-tests/cve-2015-3290
+    url: https://bugs.linaro.org/show_bug.cgi?id=3991
+    active: true
+    intermittent: true
+  - environments: *environments_all
+    notes: >
+      LKFT: LTP creat08 and open10 failed
+      testdir.B.3132/setgid: Incorrect modes, setgid bit should be set
+      skip these tests until this bug fixes on upstream LTP
+    projects: *projects_all
+    test_name: ltp-syscalls-tests/open10
+    url: https://bugs.linaro.org/show_bug.cgi?id=3940
+    active: true
+    intermittent: false
+  - environments: *environments_all
+    notes: >
+      LKFT: LTP creat08 and open10 failed
+      testdir.B.3132/setgid: Incorrect modes, setgid bit should be set
+      skip these tests until this bug fixes on upstream LTP
+    projects: *projects_all
+    test_name: ltp-syscalls-tests/creat08
+    url: https://bugs.linaro.org/show_bug.cgi?id=3940
+    active: true
+    intermittent: false
+  - environments: *environments_all
+    notes: >
+      LKFT: LTP open posix: pthread_rwlock_unlock_3-1.run-test failed - reader
+      did not get the lock when writer1 release the lock
+    projects: *projects_all
+    test_name: ltp-open-posix-tests/pthread_rwlock_unlock_3-1
+    url: https://bugs.linaro.org/show_bug.cgi?id=3951
+    active: true
+    intermittent: false
+  - environments: *environments_all
+    notes: >
+      LKFT: LTP open posix: pthread_rwlock_rdlock_2-1 and
+      pthread_rwlock_rdlock_2-2 failed
+    projects: *projects_all
+    test_name: ltp-open-posix-tests/pthread_rwlock_rdlock_2-1
+    url: https://bugs.linaro.org/show_bug.cgi?id=3952
+    active: true
+    intermittent: false
+  - environments: *environments_all
+    notes: >
+      LKFT: LTP open posix: pthread_rwlock_rdlock_2-2 and
+      pthread_rwlock_rdlock_2-2 failed
+    projects: *projects_all
+    test_name: ltp-open-posix-tests/pthread_rwlock_rdlock_2-2
+    url: https://bugs.linaro.org/show_bug.cgi?id=3952
+    active: true
+    intermittent: false
+  - environments: *environments_all
+    notes: >
+      LKFT: LTP: open posix mmap_11-4 : Modification of the partial page at the
+      end of an object is written out
+    projects: *projects_all
+    test_name: ltp-open-posix-tests/mmap_11-4
+    url: https://bugs.linaro.org/show_bug.cgi?id=3953
+    active: true
+    intermittent: false
+  - environments: *environments_all
+    notes: >
+      LKFT: LTP: open posix: clock_settime_8-1 intermittent failures on all
+      device
+    projects: *projects_all
+    test_name: ltp-open-posix-tests/clock_settime_8-1
+    url: https://bugs.linaro.org/show_bug.cgi?id=3965
+    active: true
+    intermittent: true
+  - environments: *environments_all
+    notes: >
+      LTP: fsetxattr02 and fgetxattr02 failed with error ENXIO
+      (No such device or address)
+    projects: *projects_all
+    test_name: ltp-syscalls-tests/fsetxattr02
+    url: https://bugs.linaro.org/show_bug.cgi?id=4011
+    active: true
+    intermittent: false
+  - environments: *environments_all
+    notes: >
+      LTP: fsetxattr02 and fgetxattr02 failed with error ENXIO
+      (No such device or address)
+    projects: *projects_all
+    test_names:
+    - ltp-syscalls-tests/fgetxattr02
+    - ltp-syscalls-compat-tests/fgetxattr02
+    - ltp-syscalls-64k-page_size-tests/fgetxattr02
+    - ltp-syscalls-kasan-tests/fgetxattr02
+    url: https://bugs.linaro.org/show_bug.cgi?id=4011
+    active: true
+    intermittent: false
+  - environments: *environments_all
+    notes: >
+      LTP: statx04 STATX_ATTR_COMPRESSED flag is not set for ext2
+    projects: *projects_all
+    test_names:
+    - ltp-syscalls-tests/statx04
+    - ltp-syscalls-compat-tests/statx04
+    - ltp-syscalls-kasan-tests/statx04
+    - ltp-syscalls-64k-page_size-tests/statx04
+    url: https://bugs.linaro.org/show_bug.cgi?id=4012
+    active: true
+    intermittent: false
+  - environments: *environments_all
+    notes: >
+      LTP: execveat03.c:74: FAIL: execveat() returned unexpected errno: EINVAL
+    projects: *projects_all
+    test_name: ltp-syscalls-tests/execveat03
+    url: https://bugs.linaro.org/show_bug.cgi?id=4010
+    active: true
+    intermittent: false
+  - environments: *environments_all
+    notes: >
+      keyctl05: use data that passes dns_resolver_preparse() check
+    projects: *projects_all
+    test_name: ltp-syscalls-tests/keyctl05
+    url: http://lists.linux.it/pipermail/ltp/2018-October/009752.html
+    active: true
+    intermittent: false
+  - environments: *environments_all
+    notes: >
+      LKFT: LTP: open posix: condvar_pthread_cond_wait_1 intermittent failures
+      on all devices
+    projects: *projects_all
+    test_name: ltp-open-posix-tests/condvar_pthread_cond_wait_1
+    url: https://bugs.linaro.org/show_bug.cgi?id=3973
+    active: true
+    intermittent: true
+  - environments: *environments_all
+    notes: >
+      LTP: mm: vma05 1 TFAIL: [vdso] bug not patched
+      There are missing symbols due to binary stripped
+    projects: *projects_all
+    test_name: ltp-mm-tests/vma05
+    url: https://bugs.linaro.org/show_bug.cgi?id=4256
+    active: true
+    intermittent: false
+  - environments: *environments_all
+    notes: >
+      LTP: mm: overcommit_memory.c:237: BROK: Unexpected error: CommitLimit < Committed_AS
+    projects: *projects_all
+    test_name: ltp-mm-tests/overcommit_memory02
+    url: https://bugs.linaro.org/show_bug.cgi?id=4257
+    active: true
+    intermittent: false
+  - environments: *environments_all
+    notes: >
+      LTP: mm: mem.c:782: BROK: mount /dev/cgroup: ENOENT
+      Need CONFIG_MEMCG in all config fragments for all kernels in all boards
+    projects: *projects_all
+    test_names:
+    - ltp-mm-tests/ksm03
+    - ltp-mm-tests/ksm03_1
+    - ltp-mm-64k-page_size-tests/ksm03_1
+    url: https://bugs.linaro.org/show_bug.cgi?id=4255
+    active: true
+    intermittent: false
+  - environments: *environments_all
+    notes: >
+      LTP: cpuhotplug05: TBROK: Field 3 is '(hikey)', '0.00' expected
+      cpuhotplug03:  No cpuhotplug_do_spin_loop processes found on CPU1
+    projects: *projects_all
+    test_names:
+    - ltp-cpuhotplug-tests/cpuhotplug05
+    - ltp-cpuhotplug-tests/cpuhotplug03
+    url: https://bugs.linaro.org/show_bug.cgi?id=4264
+    active: true
+    intermittent: true
+  - environments: *environments_all
+    notes: >
+      LTP: fanotify09.c:202: FAIL: first group got more than 2 events (72 > 48)
+      FAIL: group 1 got event: mask 10 pid=21076 fd=9
+      path=/tmp/ltp-N3rSEWsnUd/OofPg2/mntpoint
+      FAIL: group 2 got event: mask 10 pid=21076 fd=9
+      path=/tmp/ltp-N3rSEWsnUd/OofPg2/mntpoint
+    projects: *projects_all
+    test_names:
+    - ltp-syscalls-tests/fanotify09
+    url: https://bugs.linaro.org/show_bug.cgi?id=4271
+    active: true
+    intermittent: false
+  - environments: *environments_all
+    notes: >
+      LTP memory test case mtest06/mmap1 longs for 15 minutes and more and
+      failures few times and it is an intermittent issue.
+      Test frequently fails on qemu_arm64, dragonboard, hikey and Juno.
+    projects: *projects_all
+    test_name: ltp-mm-tests/mtest06
+    url: https://bugs.linaro.org/show_bug.cgi?id=4273
+    active: true
+    intermittent: true
+  - environments: *environments_all
+    notes: >
+      LTP commands mkswap01_sh failed on all devices - intermittent timeout
+    projects: *projects_all
+    test_names:
+    - ltp-commands-tests/mkswap01_sh
+    - ltp-commands-64k-page_size-tests/mkswap01_sh
+    - ltp-commands-kasan-tests/mkswap01_sh
+    - ltp-commands-compat-tests/mkswap01_sh
+    url: https://bugs.linaro.org/show_bug.cgi?id=4303
+    active: true
+    intermittent: true
+  - environments: *environments_all
+    notes: >
+      From LTP 20190517 release these new test cases got added and on all arm64 devices
+      ioctl_ns05 and ioctl_ns06 getting failed
+      tst_checkpoint.c:162 BROK ioctl_ns05.c:83 tst_checkpoint_wake(0, 1, 10000) ETIMEDOUT
+    projects: *projects_all
+    test_names:
+    - ltp-syscalls-tests/ioctl_ns05
+    - ltp-syscalls-tests/ioctl_ns06
+    url: https://bugs.linaro.org/show_bug.cgi?id=5296
+    active: true
+    intermittent: false
+  - environments: *environments_all
+    notes: >
+      LTP: tgkill03 failed intermittently on all devices
+    projects: *projects_all
+    test_names:
+    - ltp-syscalls-tests/tgkill03
+    url: https://bugs.linaro.org/show_bug.cgi?id=5312
+    active: true
+    intermittent: true
+  - environments: *environments_all
+    notes: >
+      [PATCH] shmctl01: don't use hardcoded index == 0 for SHM_STAT test
+
+      This fixes the test case problem.
+      We have to wait for the next version of LTP to be released or cherry-pick into OE builds.
+
+      ref link
+      http://lists.linux.it/pipermail/ltp/2019-May/012072.html
+    projects: *projects_all
+    test_names:
+    - ltp-syscalls-tests/shmctl01
+    url: https://bugs.linaro.org/show_bug.cgi?id=5313
+    active: true
+    intermittent: false
+  - environments: *environments_all
+    notes: >
+      LTP: sync_file_range02 failed intermittently on all devices
+    projects: *projects_all
+    test_names:
+    - ltp-syscalls-tests/sync_file_range02
+    - lltp-syscalls-kasan-tests/sync_file_range02
+    - ltp-syscalls-64k-page_size-tests/sync_file_range02
+    url: https://bugs.linaro.org/show_bug.cgi?id=5472
+    active: true
+    intermittent: true
+  - environments: *environments_all
+    notes: >
+      LTP CVE new test case cve-2017-1000380 detecting kernel warnings and
+      reports as failed as below. Which is good sign to catch kernel warning
+
+      tst_taint.c:88 BROK Kernel is already tainted
+
+    projects: *projects_all
+    test_name: ltp-cve-tests/cve-2017-1000380
+    url: https://bugs.linaro.org/show_bug.cgi?id=5550
+    active: true
+    intermittent: true
+  - environments: *environments_all
+    notes: >
+      LTP accept02 failed on qemu devices and hikey
+      accept02.c:52 setsockopt(6, 0, 42, 0xffffa8572f78, 136) failed ENODEV (19)
+
+      It is possible that sometimes start tests before network is up
+    projects: *projects_all
+    test_name: ltp-syscalls-tests/accept02
+    url: https://bugs.linaro.org/show_bug.cgi?id=5551
+    active: true
+    intermittent: true
+  - environments: *environments_all
+    notes: >
+      LTP syscalls test case acct02 getting failed on Dragonboard 410c,
+      Hikey Board on multiple linux stable rc branches.
+    projects: *projects_all
+    test_name: ltp-syscalls-tests/acct02
+    url: https://bugs.linaro.org/show_bug.cgi?id=5555
+    active: true
+    intermittent: true
+  - environments: *environments_all
+    notes: >
+      These listed test cases failed on nxp-ls2088
+      because tests running on nfs mounted rootfs.
+    projects: *projects_all
+    test_names:
+    - ltp-commands-tests/ar_sh
+    - ltp-syscalls-tests/renameat201
+    - ltp-syscalls-tests/renameat202
+    - ltp-syscalls-tests/utime01
+    - ltp-syscalls-tests/utime02
+    url: https://bugs.linaro.org/show_bug.cgi?id=5567
+    active: true
+    intermittent: false
+  - environments: *environments_all
+    notes: >
+      INFO Starting crypto_user larval deletion test.  May crash buggy kernels.
+      BROK unexpected error from tst_crypto_del_alg() EBUSY (16)
+    projects: *projects_all
+    test_name: ltp-crypto-tests/crypto_user02
+    url: https://bugs.linaro.org/show_bug.cgi?id=5579
+    active: true
+    intermittent: true
+  - environments: *environments_all
+    notes: >
+      LTP test case clock_gettime03 failed intermittently on the slow qemu_i386.
+      Same test failure noticed on x86 kasan build.
+    projects: *projects_all
+    test_names:
+    - ltp-syscalls-tests/clock_gettime03
+    - ltp-containers-tests/clock_gettime03
+    url: https://bugs.linaro.org/show_bug.cgi?id=5640
+    active: true
+    intermittent: true
+  - environments: *environments_all
+    notes: >
+      LTP hugetlb test case hugeshmat04 fails intermittenly on nxp-ls2088, Juno
+      and qemu_arm64. On mainline and other branches also.
+    projects: *projects_all
+    test_name: ltp-hugetlb-tests/hugeshmat04
+    url: https://bugs.linaro.org/show_bug.cgi?id=5644
+    active: true
+    intermittent: true
+  - environments: *environments_all
+    notes: >
+      LTP open-posix test case clocks_twopsetclock fails on all devices
+      on all the stable branches and mainline and next.
+    projects: *projects_all
+    test_name: ltp-open-posix-tests/clocks_twopsetclock
+    url: https://bugs.linaro.org/show_bug.cgi?id=5648
+    active: true
+    intermittent: false
+  - environments: *environments_all
+    notes: >
+      LTP controllers memcg_move_charge_at_immigrate_test is a known
+      intermittent failure. Process 19742 exited with 1 after warm up
+    projects: *projects_all
+    test_name: ltp-controllers-tests/memcg_move_charge_at_immigrate
+    url: https://bugs.linaro.org/show_bug.cgi?id=5652
+    active: true
+    intermittent: true
+  - environments: *environments_all
+    notes: >
+      LTP controllers memcg_stat_rss test fails intermittently
+      Process 19346 exited with 1 after warm up
+    projects: *projects_all
+    test_name: ltp-controllers-tests/memcg_stat_rss
+    url: https://bugs.linaro.org/show_bug.cgi?id=5653
+    active: true
+    intermittent: true
+  - environments: *environments_all
+    notes: >
+      LTP memcg_usage_in_bytes_test fails on most of the devices
+      in few cases pass on Juno-r2.
+      memory.usage_in_bytes is 4325376, 4194304 expected
+    projects: *projects_all
+    test_name: ltp-controllers-tests/memcg_usage_in_bytes
+    url: https://bugs.linaro.org/show_bug.cgi?id=5653
+    active: true
+    intermittent: true
+  - environments: *environments_all
+    notes: >
+      memcg_subgroup_charge FAIL rss is 0, 135168 expected
+      test failure is intermittent
+    projects: *projects_all
+    test_name: ltp-controllers-tests/memcg_subgroup_charge
+    url: https://bugs.linaro.org/show_bug.cgi?id=5655
+    active: true
+    intermittent: true
+  - environments: *environments_all
+    notes: >
+      LTP controllers memcg_max_usage_in_bytes FAIL memory.max_usage_in_bytes
+      is 4325376, 4194304 expected
+    projects: *projects_all
+    test_name: ltp-controllers-tests/memcg_max_usage_in_bytes
+    url: https://bugs.linaro.org/show_bug.cgi?id=5660
+    active: true
+    intermittent: true
+  - environments: *environments_all
+    notes: >
+      LTP controllers memcg_use_hierarchy_test FAIL echo 1 >
+      memory.use_hierarchy passed unexpectedly.
+    projects: *projects_all
+    test_name: ltp-controllers-tests/memcg_use_hierarchy
+    url: https://bugs.linaro.org/show_bug.cgi?id=5661
+    active: true
+    intermittent: true
+  - environments: *environments_all
+    notes: >
+      af_alg07.c:96: TFAIL: fchownat() failed to fail, kernel may be vulnerable
+    projects: *projects_all
+    test_names:
+    - ltp-crypto-tests/af_alg07
+    - ltp-cve-tests/CVE-2019-8912
+    url: https://bugs.linaro.org/show_bug.cgi?id=5712
+    active: true
+    intermittent: true
+  - environments: *environments_all
+    notes: >
+      clock_gettime04.c:143: TFAIL: CLOCK_REALTIME: Time travelled backwards (5): -1605261206749177375 ns
+    projects: *projects_all
+    test_name: ltp-syscalls-tests/clock_gettime04
+    url: https://bugs.linaro.org/show_bug.cgi?id=5713
+    active: true
+    intermittent: true
+  - environments: *environments_all
+    notes: >
+      send02.c:86: TFAIL: recv() error: EAGAIN/EWOULDBLOCK (11)
+    projects: *projects_all
+    test_name: ltp-syscalls-tests/send02
+    url: https://bugs.linaro.org/show_bug.cgi?id=5714
+    active: true
+    intermittent: true
+  - environments: *environments_all
+    notes: >
+      LTP: cve-2018-1000204 ioctl_sg01 tests failed on x86_64 due to timeout
+    projects: *projects_all
+    test_names:
+    - ltp-syscalls-tests/ioctl_sg01
+    - ltp-cve-tests/cve-2018-1000204
+    url: https://bugs.linaro.org/show_bug.cgi?id=5715
+    active: true
+    intermittent: true
+  - environments: *environments_all
+    notes: >
+      LTP: memcg_stat_test 6 TFAIL: hierarchical_memory_limit is 4096, 8192 expected
+    projects: *projects_all
+    test_name: ltp-controllers-tests/memcg_stat
+    url: https://bugs.linaro.org/show_bug.cgi?id=5716
+    active: true
+    intermittent: false
+  - environments: *environments_all
+    notes: >
+      LTP tracing test case dynamic_debug01 timeout on slow machines after running about 15 minutes
+      of time and this is an intermittent failure.
+    projects: *projects_all
+    test_name: ltp-tracing-tests/dynamic_debug01
+    url: https://bugs.linaro.org/show_bug.cgi?id=5717
+    active: true
+    intermittent: true
+  - environments: *environments_all
+    notes: >
+      semctl09.c:136: TINFO: Test SEM_STAT_ANY with nobody user
+      semctl09.c:153: TFAIL: SEM_STAT_ANY doesn't pass the buffer specified by the caller to kernel
+      semctl09.c:136: TINFO: Test SEM_STAT_ANY with root user
+      semctl09.c:153: TFAIL: SEM_STAT_ANY doesn't pass the buffer specified by the caller to kernel
+    projects: *projects_all
+    test_names:
+    - ltp-syscalls-tests/semctl09
+    url: https://bugs.linaro.org/show_bug.cgi?id=5737
+    active: true
+    intermittent: false
+  - environments: *environments_all
+    notes: >
+      While testing LTP syscalls on juno-r2-compat the following tests
+      failed intermittently. These intermittent failures are specific to
+      juno-r2-compat mode which is 64 bit kernel running on 32 bit userspace.
+
+      tst_ioctl.c:30: TINFO FIBMAP ioctl is supported
+      swapoff01    1  TFAIL    ../swapon/libswapon.c:70: mkswap on EXT2/EXT3/EXT4 failed
+    projects: *projects_all
+    test_names:
+    - ltp-syscalls-tests/swapoff01
+    - ltp-syscalls-tests/swapoff02
+    - ltp-syscalls-tests/swapon01
+    - ltp-syscalls-tests/swapon02
+    - ltp-syscalls-tests/swapon03
+    url: https://bugs.linaro.org/show_bug.cgi?id=5747
+    active: true
+    intermittent: true
+  - environments: *environments_all
+    notes: >
+      syscalls/ioctl_loop05.c: skip test on overlay filesystem
+
+      The undelrying device can't be properly detected and causes failure
+      when running in an overlay filesystem.
+    projects: *projects_all
+    test_names:
+    - ltp-syscalls-tests/ioctl_loop05
+    url: https://bugs.linaro.org/show_bug.cgi?id=5748
+    active: true
+    intermittent: false
+  - environments: *environments_all
+    notes: >
+      tst_device.c:89: TINFO: Found free device 0 '/dev/loop0'
+      [  163.035370] loop0: detected capacity change from 0 to 40960
+      [  163.058232]  loop0: p1
+      ioctl09.c:45: TPASS: access /sys/block/loop0/loop0p1 succeeds
+      ioctl09.c:53: TPASS: access /dev/loop0p1 succeeds
+      ioctl09.c:48: TPASS: access /sys/block/loop0/loop0p2 fails
+      ioctl09.c:56: TPASS: access /dev/loop0p2 fails
+      ioctl09.c:45: TPASS: access /sys/block/loop0/loop0p1 succeeds
+      ioctl09.c:53: TPASS: access /dev/loop0p1 succeeds
+      ioctl09.c:48: TFAIL: access /sys/block/loop0/loop0p2 fails
+      ioctl09.c:56: TFAIL: access /dev/loop0p2 fails
+
+    projects: *projects_all
+    test_names:
+    - ltp-syscalls-tests/ioctl09
+    url: https://bugs.linaro.org/show_bug.cgi?id=5753
+    active: true
+    intermittent: true
+  - environments: *environments_all
+    notes: >
+      cgroup_xattr.c:364: Expect: can read xattr trusted.test of file 'NetworkManager-dispatcher.service'
+      cgroup_xattr.c:380: Expect: values equal
+    projects: *projects_all
+    test_names:
+    - ltp-controllers-tests/cgroup_xattr
+    url: https://bugs.linaro.org/show_bug.cgi?id=5764
+    active: true
+    intermittent: true
+  - environments: *environments_all
+    notes: >
+      fsync02.c:96: TFAIL: fsync took too long: 148.000000 seconds; max_block: 17768; data_blocks: 2287
+    projects: *projects_all
+    test_names:
+    - ltp-syscalls-tests/fsync02
+    url: https://bugs.linaro.org/show_bug.cgi?id=5765
+    active: true
+    intermittent: true
+  - environments: *environments_all
+    notes: >
+      vfork01.c:340: stat(2) failed to get info. of working directory in parent process
+    projects: *projects_all
+    test_names:
+    - ltp-syscalls-tests/vfork01
+    url: https://bugs.linaro.org/show_bug.cgi?id=5766
+    active: true
+    intermittent: true

@@ -1,0 +1,56 @@
+projects:
+- name: Ben-LKFT-perf
+  projects: &projects_all
+    - ~ben.copeland/linux-stable-rc-linux-5.10.y
+    - ~ben.copeland/linux-stable-rc-linux-5.4.y
+  url: https://staging-qa-reports.linaro.org
+  environments: &environments_all
+  - fx700
+  known_issues:
+  - environments: *environments_all
+    notes: >
+      perf test case Object code reading: FAILED
+
+      test child forked, pid 601
+      Looking at the vmlinux_path (8 entries long)
+      symsrc__init cannot get elf header.
+      Failed to open /proc/kcore. Note /proc/kcore requires CAP_SYS_RAWIO capability to access.
+      Using /proc/kallsyms for symbols
+      Parsing event 'cycles:u'
+      perf_evlist__open() failed!
+      No such file or directory
+      test child finished with -1
+
+      Test results showing failed on all arm64 and arm.
+      intermittent failure on i386.
+    projects: *projects_all
+    test_names:
+    - perf/Object-code-reading
+    - perf/Test-object-code-reading
+    url: https://bugs.linaro.org/show_bug.cgi?id=5470
+    active: true
+    intermittent: true
+  - environments: *environments_all
+    notes: >
+      perf test case Read backward ring buffer failed on 32bit arch.
+      failed on arm32 x15 device, qemu_arm32 and qemu_i386.
+      intermittent failure on i386.
+
+      50 Read backward ring buffer
+      --- start ---
+      test child forked, pid 510
+      Using CPUID GenuineIntel-6-9E-9
+      mmap size 1052672B
+      mmap size 8192B
+      Finished reading overwrite ring buffer rewind
+      free() invalid next size (fast)
+      test child interrupted
+      ---- end ----
+      Read backward ring buffer FAILED!
+    projects: *projects_all
+    test_names:
+    - perf/Read-backward-ring-buffer
+    - perf/Test-backward-reading-from-ring-buffer
+    url: https://bugs.linaro.org/show_bug.cgi?id=5471
+    active: true
+    intermittent: true

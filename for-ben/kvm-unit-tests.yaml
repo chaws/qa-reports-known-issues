@@ -1,0 +1,42 @@
+projects:
+- name: Ben-LKFT-kvm-unit-tests
+  projects: &projects_all
+    - ~ben.copeland/linux-stable-rc-linux-5.10.y
+    - ~ben.copeland/linux-stable-rc-linux-5.4.y
+  url: https://staging-qa-reports.linaro.org
+  environments: &environments_all
+  - fx700
+  known_issues:
+  - environments: *environments_all
+    notes: >
+      LKFT: kvm-unit-tests timer test got TIME OUT and failed intermittently
+      TESTNAME=timer TIMEOUT=2s ACCEL= ./arm/run arm/timer.flat -smp 1
+      FAIL timer (timeout; duration=2s)
+    projects: *projects_all
+    test_name: kvm-unit-tests/timer
+    url: https://bugs.linaro.org/show_bug.cgi?id=5556
+    active: true
+    intermittent: true
+  - environments: *environments_all
+    notes: >
+      LKFT: kvm-unit-tests pmu failed - FAIL pmu (3 tests, 2 unexpected failures)
+      This test always failed on juno running different branches of Linux kernel.
+
+      TESTNAME=pmu TIMEOUT=90s ACCEL= ./arm/run arm/pmu.flat -smp 1
+      FAIL pmu (3 tests, 2 unexpected failures)
+    projects: *projects_all
+    test_name: kvm-unit-tests/pmu
+    url: https://bugs.linaro.org/show_bug.cgi?id=5557
+    active: true
+    intermittent: false
+  - environments: *environments_all
+    notes: >
+      micro-bench test fails intermittently on arm64
+
+      TESTNAME=micro-bench TIMEOUT=90s ACCEL=kvm ./arm/run arm/micro-bench.flat -smp 2
+      FAIL micro-bench (timeout; duration=90s)
+    projects: *projects_all
+    test_name: kvm-unit-tests/micro-bench
+    url: https://bugs.linaro.org/show_bug.cgi?id=5610
+    active: true
+    intermittent: true
